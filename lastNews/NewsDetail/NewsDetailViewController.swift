@@ -9,7 +9,7 @@ import UIKit
 
 class NewsDetailViewController: UIViewController {
     
-    var currentNew: ReadyNews!
+    var currentNew: NewsData!
     
     @IBOutlet private weak var detailTitle: UILabel?
     @IBOutlet private weak var detailImage: UIImageView?
@@ -23,12 +23,12 @@ class NewsDetailViewController: UIViewController {
         
     }
     
-    func configureDetail(current new: ReadyNews) {
+    func configureDetail(current new: NewsData) {
         detailTitle?.text = new.title
-        detailText?.text = new.text
+        detailText?.text = new.content
         detailAuthor?.text = new.author
         detailDate?.text = new.date
-        ImageManager.shared.getImage(url: new.image, image: detailImage ?? UIImageView())
+        ImageManager.shared.getImage(url: new.imageUrl, image: detailImage ?? UIImageView())
     }
     
 }

@@ -14,6 +14,7 @@ class ImageManager {
     
     func getImage(url: String, image: UIImageView) {
         guard let imageURL = URL(string: url) else { return }
-        image.kf.setImage(with: imageURL, placeholder: UIImage(systemName: "questionmark.circle"))
+        image.kf.indicatorType = .activity
+        image.kf.setImage(with: imageURL)
     }
 }

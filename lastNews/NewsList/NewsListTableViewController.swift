@@ -10,7 +10,7 @@ import UIKit
 class NewsListTableViewController: UITableViewController {
     
     @IBOutlet var table: UITableView!
-    private var newsArray: [ReadyNews] = []
+    private var newsArray: [NewsData] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,12 +43,11 @@ class NewsListTableViewController: UITableViewController {
     private func getNews() {
         NetworkManager.shared.fetchData { news in
             for oneNew in news.data {
-                let readyNew = ReadyNews(author: oneNew.author,
-                                         text: oneNew.content,
-                                         date: oneNew.date,
-                                         image: oneNew.imageUrl,
-                                         title: oneNew.title,
-                                         time: oneNew.time)
+                let readyNew = NewsData(author: oneNew.author,
+                                        content: oneNew.content,
+                                        date: oneNew.date,
+                                        imageUrl: oneNew.imageUrl,
+                                        title: oneNew.title)
                 self.newsArray.append(readyNew)
             }
             DispatchQueue.main.async {
@@ -59,11 +58,11 @@ class NewsListTableViewController: UITableViewController {
     
     // MARK: - Private UITableViewDataSource Methods
     
-    private func numberOfRowsInSection(for news: [ReadyNews] ) -> Int {
+    private func numberOfRowsInSection(for news: [NewsData] ) -> Int {
         news.count
     }
     
-    private func prepareCell(for indexPath: IndexPath, with data: [ReadyNews]) -> UITableViewCell {
+    private func prepareCell(for indexPath: IndexPath, with data: [NewsData]) -> UITableViewCell {
         guard let cell = table.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
             return UITableViewCell()
         }
@@ -71,7 +70,7 @@ class NewsListTableViewController: UITableViewController {
         return cell
     }
     
-    private func setupNavigation(with data: [ReadyNews], for segue: UIStoryboardSegue) {
+    private func setupNavigation(with data: [NewsData], for segue: UIStoryboardSegue) {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         let currentRow = data[indexPath.row]
         let detailVC = segue.destination as? NewsDetailViewController

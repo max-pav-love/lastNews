@@ -16,10 +16,10 @@ class NewsListTableViewCell: UITableViewCell {
     
     static let identifier = "NewsListTableViewCell"
     
-    func configure(_ news: ReadyNews) {
+    func configure(_ news: NewsData) {
         newsTitleLabel?.text = news.title
-        newsDetailLabel?.text = news.author + " " + news.date
-        ImageManager.shared.getImage(url: news.image, image: newsImage ?? UIImageView())
+        newsDetailLabel?.text = news.date
+        ImageManager.shared.getImage(url: news.imageUrl, image: newsImage ?? UIImageView())
     }
     
 }
