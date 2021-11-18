@@ -28,7 +28,7 @@ class NewsDetailViewController: UIViewController {
         detailDate?.text = viewModel.newsDetailDate
         detailText?.text = viewModel.newsDetailText
         detailAuthor?.text = viewModel.newsDetailAuthor
-        ImageManager.shared.getImage(url: viewModel.newsDetailImage ?? "", image: detailImage)
+        ImageManager.shared.getImage(url: viewModel.newsDetailImage ?? "", image: detailImage ?? UIImageView())
     }
     
 }
