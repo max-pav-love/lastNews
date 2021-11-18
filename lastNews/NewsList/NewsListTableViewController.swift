@@ -10,18 +10,27 @@ import UIKit
 class NewsListTableViewController: UITableViewController {
     
     @IBOutlet var table: UITableView!
-    private var newsArray: [ReadyNews] = []
+    
+    private var viewModel: NewsListViewModelProtocol! {
+        didSet {
+            viewModel.fetchNews {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
+        viewModel = NewsListViewModel()
         super.viewDidLoad()
-        getNews()
         
     }
     
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        setupNavigation(with: newsArray, for: segue)
+        setupNavigation(with: viewModel, for: segue)
     }
     
     // MARK: - UITableViewDataSource
@@ -31,51 +40,30 @@ class NewsListTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        numberOfRowsInSection(for: newsArray)
+        viewModel.numberOfRows() ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        prepareCell(for: indexPath, with: newsArray)
-    }
-    
-    // MARK: - Private
-    
-    private func getNews() {
-        NetworkManager.shared.fetchData { news in
-            for oneNew in news.data {
-                let readyNew = ReadyNews(author: oneNew.author,
-                                         text: oneNew.content,
-                                         date: oneNew.date,
-                                         image: oneNew.imageUrl,
-                                         title: oneNew.title,
-                                         time: oneNew.time)
-                self.newsArray.append(readyNew)
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
+        prepareCell(for: indexPath, with: viewModel)
     }
     
     // MARK: - Private UITableViewDataSource Methods
     
-    private func numberOfRowsInSection(for news: [ReadyNews] ) -> Int {
-        news.count
-    }
-    
-    private func prepareCell(for indexPath: IndexPath, with data: [ReadyNews]) -> UITableViewCell {
+    private func prepareCell(for indexPath: IndexPath, with data: NewsListViewModelProtocol) -> UITableViewCell {
         guard let cell = table.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
             return UITableViewCell()
         }
-        cell.configure(data[indexPath.row])
+        let cellViewModel = viewModel.cellViewModel(for: indexPath)
+        cell.viewModel = cellViewModel
+        
         return cell
     }
     
-    private func setupNavigation(with data: [ReadyNews], for segue: UIStoryboardSegue) {
+    private func setupNavigation(with data: NewsListViewModelProtocol, for segue: UIStoryboardSegue) {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let currentRow = data[indexPath.row]
         let detailVC = segue.destination as? NewsDetailViewController
-        detailVC?.currentNew = currentRow
+        viewModel.selectedRow(for: indexPath)
+        detailVC?.viewModel = viewModel.viewModelForSelectedRow()
     }
     
 }
