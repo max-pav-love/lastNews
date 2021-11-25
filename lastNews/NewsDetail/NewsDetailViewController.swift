@@ -20,7 +20,6 @@ class NewsDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureDetail(current: currentNew)
-        
     }
     
     func configureDetail(current new: NewsData) {

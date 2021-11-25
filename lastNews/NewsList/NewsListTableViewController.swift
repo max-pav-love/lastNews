@@ -15,7 +15,6 @@ class NewsListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         getNews()
-        
     }
     
     // MARK: - Navigation
@@ -25,11 +24,7 @@ class NewsListTableViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDataSource
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
+        
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         numberOfRowsInSection(for: newsArray)
     }
@@ -39,24 +34,6 @@ class NewsListTableViewController: UITableViewController {
     }
     
     // MARK: - Private
-    
-    private func getNews() {
-        NetworkManager.shared.fetchData { news in
-            for oneNew in news.data {
-                let readyNew = NewsData(author: oneNew.author,
-                                        content: oneNew.content,
-                                        date: oneNew.date,
-                                        imageUrl: oneNew.imageUrl,
-                                        title: oneNew.title)
-                self.newsArray.append(readyNew)
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    // MARK: - Private UITableViewDataSource Methods
     
     private func numberOfRowsInSection(for news: [NewsData] ) -> Int {
         news.count
@@ -77,12 +54,27 @@ class NewsListTableViewController: UITableViewController {
         detailVC?.currentNew = currentRow
     }
     
+    private func getNews() {
+        NetworkManager.shared.fetchData { news in
+            for oneNew in news.data {
+                let readyNew = NewsData(author: oneNew.author,
+                                        content: oneNew.content,
+                                        date: oneNew.date,
+                                        imageUrl: oneNew.imageUrl,
+                                        title: oneNew.title)
+                self.newsArray.append(readyNew)
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
 }
 
 // MARK: - UITableView Extensions
 
 extension NewsListTableViewController {
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }

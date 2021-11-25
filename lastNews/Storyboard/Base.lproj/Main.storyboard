@@ -83,7 +83,7 @@
                                             </subviews>
                                         </stackView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HYD-Hw-eNc">
-                                            <rect key="frame" x="8" y="4" width="84" height="92"/>
+                                            <rect key="frame" x="8" y="8" width="84" height="84"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="84" id="vzD-lh-zby"/>
                                                 <constraint firstAttribute="width" constant="84" id="xcG-kj-M3W"/>
@@ -93,9 +93,9 @@
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="rvD-iC-UHg" secondAttribute="bottom" id="4sn-UJ-5yk"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="rvD-iC-UHg" secondAttribute="trailing" id="KsV-Bk-lgd"/>
-                                        <constraint firstAttribute="bottom" secondItem="HYD-Hw-eNc" secondAttribute="bottom" constant="4" id="Lrg-HQ-iSX"/>
+                                        <constraint firstAttribute="bottom" secondItem="HYD-Hw-eNc" secondAttribute="bottom" constant="8" id="Lrg-HQ-iSX"/>
                                         <constraint firstItem="rvD-iC-UHg" firstAttribute="leading" secondItem="HYD-Hw-eNc" secondAttribute="trailing" constant="8" id="Pl0-Ph-eql"/>
-                                        <constraint firstItem="HYD-Hw-eNc" firstAttribute="top" secondItem="U4j-JX-HWR" secondAttribute="top" constant="4" id="UrA-ha-u3L"/>
+                                        <constraint firstItem="HYD-Hw-eNc" firstAttribute="top" secondItem="U4j-JX-HWR" secondAttribute="top" constant="8" id="UrA-ha-u3L"/>
                                         <constraint firstItem="HYD-Hw-eNc" firstAttribute="leading" secondItem="U4j-JX-HWR" secondAttribute="leading" constant="8" id="af0-8R-mM3"/>
                                         <constraint firstItem="rvD-iC-UHg" firstAttribute="top" secondItem="U4j-JX-HWR" secondAttribute="topMargin" id="zof-9o-M5C"/>
                                     </constraints>
