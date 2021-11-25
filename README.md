@@ -12,7 +12,6 @@ Now you are looking at `Clean Swift` architecture
 - View each news in detail
 
 ## Screenshots
-- lastNews🗞 demo
 
 <img src="https://github.com/max-pav-love/lastNews/blob/main/Screenshots/MainScreen.png" width="214" height="463">  <img src="https://github.com/max-pav-love/lastNews/blob/main/Screenshots/DetailScreen.png" width="214" height="463">
 
