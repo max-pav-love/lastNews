@@ -16,6 +16,5 @@ struct NewsData: Codable {
     let content: String
     let date: String
     let imageUrl: String
-    let time: String
     let title: String
 }

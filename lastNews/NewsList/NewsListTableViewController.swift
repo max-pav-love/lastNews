@@ -32,11 +32,7 @@ class NewsListTableViewController: UITableViewController {
     }
     
     // MARK: - UITableViewDataSource
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        numberOfSections()
-    }
-    
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         numberOfRows()
     }
@@ -58,10 +54,6 @@ class NewsListTableViewController: UITableViewController {
     
     private func numberOfRows() -> Int {
         viewModel.numberOfRows() ?? 0
-    }
-    
-    private func numberOfSections() -> Int {
-        1
     }
     
     private func setupNavigation(with data: NewsListViewModelProtocol, for segue: UIStoryboardSegue) {

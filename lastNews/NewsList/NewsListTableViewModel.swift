@@ -18,7 +18,6 @@ class NewsListViewModel: NewsListViewModelProtocol {
                                         content: oneNew.content,
                                         date: oneNew.date,
                                         imageUrl: oneNew.imageUrl,
-                                        time: oneNew.time,
                                         title: oneNew.title)
                 self.news.append(readyNew)
             }
