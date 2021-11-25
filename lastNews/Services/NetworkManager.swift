@@ -22,7 +22,6 @@ final class NetworkManager {
                 let news = try decoder.decode(News.self, from: data)
                 completion(news)
             } catch let error {
-                AlertWarning.shared.showAlert()
                 print("Error serialization json", error)
             }
         }.resume()
