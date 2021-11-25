@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol NewsDetailViewProtocol: AnyObject {
+    func setNewsDetailName(with name: String?)
+    func setNewsDetailText(with text: String?)
+    func setNewsDetailAuthor(with author: String?)
+    func setNewsDetailDate(with date: String?)
+    func setNewsDetailImage(with url: String)
+}
+
 class NewsDetailViewController: UIViewController {
-    
-    var currentNew: NewsData!
     
     @IBOutlet private weak var detailTitle: UILabel?
     @IBOutlet private weak var detailImage: UIImageView?
@@ -17,18 +23,35 @@ class NewsDetailViewController: UIViewController {
     @IBOutlet private weak var detailDate: UILabel?
     @IBOutlet private weak var detailText: UITextView?
     
+    var presenter: NewsDetailPresenterProtocol?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDetail(current: currentNew)
-        
+        presenter?.showDetails()
     }
     
-    func configureDetail(current new: NewsData) {
-        detailTitle?.text = new.title
-        detailText?.text = new.content
-        detailAuthor?.text = new.author
-        detailDate?.text = new.date
-        ImageManager.shared.getImage(url: new.imageUrl, image: detailImage ?? UIImageView())
+}
+
+extension NewsDetailViewController: NewsDetailViewProtocol {
+    func setNewsDetailText(with text: String?) {
+        detailText?.text = text
+    }
+    
+    func setNewsDetailAuthor(with author: String?) {
+        detailAuthor?.text = author
+    }
+    
+    func setNewsDetailDate(with date: String?) {
+        detailDate?.text = date
+    }
+    
+    func setNewsDetailName(with name: String?) {
+        detailTitle?.text = name
+    }
+    
+    func setNewsDetailImage(with url: String) {
+        ImageManager.shared.getImage(url: url,
+                                     image: detailImage ?? UIImageView())
     }
     
 }

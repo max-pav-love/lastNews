@@ -8,7 +8,7 @@
 import Kingfisher
 import UIKit
 
-class ImageManager {
+final class ImageManager {
     
     static let shared = ImageManager()
     
@@ -17,4 +17,7 @@ class ImageManager {
         image.kf.indicatorType = .activity
         image.kf.setImage(with: imageURL)
     }
+
 }
+
+

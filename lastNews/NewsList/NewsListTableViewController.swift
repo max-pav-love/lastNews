@@ -7,74 +7,65 @@
 
 import UIKit
 
+protocol NewsListTableViewProtocol: AnyObject {
+    var detailSegue: String { get }
+    func reloadData()
+}
+
 class NewsListTableViewController: UITableViewController {
     
     @IBOutlet var table: UITableView!
-    private var newsArray: [NewsData] = []
+    
+    var presenter: NewsListPresenterProtocol?
+    private let configurator: NewsListConfiguratorProtocol = NewsListConfigurator()
+    
+    var detailSegue = "showDetail"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getNews()
-        
+        configurator.configure(with: self)
+        presenter?.viewDidLoad()
+    }
+    
+    // MARK: - UITableViewDataSource
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        numberOfRows()
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        prepareCell(for: indexPath)
     }
     
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        setupNavigation(with: newsArray, for: segue)
-    }
-    
-    // MARK: - UITableViewDataSource
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        numberOfRowsInSection(for: newsArray)
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        prepareCell(for: indexPath, with: newsArray)
+        navigation(by: segue, with: sender)
     }
     
     // MARK: - Private
     
-    private func getNews() {
-        NetworkManager.shared.fetchData { news in
-            for oneNew in news.data {
-                let readyNew = NewsData(author: oneNew.author,
-                                        content: oneNew.content,
-                                        date: oneNew.date,
-                                        imageUrl: oneNew.imageUrl,
-                                        title: oneNew.title)
-                self.newsArray.append(readyNew)
-            }
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
-        }
-    }
-    
-    // MARK: - Private UITableViewDataSource Methods
-    
-    private func numberOfRowsInSection(for news: [NewsData] ) -> Int {
-        news.count
-    }
-    
-    private func prepareCell(for indexPath: IndexPath, with data: [NewsData]) -> UITableViewCell {
-        guard let cell = table.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
+    private func prepareCell(for indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = table.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell,
+            let news = presenter?.news(for: indexPath)
+        else {
             return UITableViewCell()
         }
-        cell.configure(data[indexPath.row])
+        cell.configure(news)
         return cell
     }
     
-    private func setupNavigation(with data: [NewsData], for segue: UIStoryboardSegue) {
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let currentRow = data[indexPath.row]
-        let detailVC = segue.destination as? NewsDetailViewController
-        detailVC?.currentNew = currentRow
+    private func numberOfRows() -> Int {
+        presenter?.newsCount ?? 0
+    }
+    
+    private func navigation(by segue: UIStoryboardSegue, with sender: Any?) {
+        if segue.identifier == detailSegue {
+            guard let news = sender as? NewsData else { return }
+            let detailVC = segue.destination as! NewsDetailViewController
+            let configurator: NewsDetailConfiguratorProtocol = NewsDetailConfigurator()
+            configurator.configure(with: detailVC, and: news)
+        }
     }
     
 }
@@ -82,13 +73,22 @@ class NewsListTableViewController: UITableViewController {
 // MARK: - UITableView Extensions
 
 extension NewsListTableViewController {
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        presenter?.showNewsDetails(for: indexPath)
+    }
+    
+}
+
+extension NewsListTableViewController: NewsListTableViewProtocol {
+    func reloadData() {
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
 }

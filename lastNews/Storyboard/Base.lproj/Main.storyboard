@@ -83,7 +83,7 @@
                                             </subviews>
                                         </stackView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HYD-Hw-eNc">
-                                            <rect key="frame" x="8" y="4" width="84" height="92"/>
+                                            <rect key="frame" x="8" y="8" width="84" height="84"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="84" id="vzD-lh-zby"/>
                                                 <constraint firstAttribute="width" constant="84" id="xcG-kj-M3W"/>
@@ -93,9 +93,9 @@
                                     <constraints>
                                         <constraint firstAttribute="bottomMargin" secondItem="rvD-iC-UHg" secondAttribute="bottom" id="4sn-UJ-5yk"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="rvD-iC-UHg" secondAttribute="trailing" id="KsV-Bk-lgd"/>
-                                        <constraint firstAttribute="bottom" secondItem="HYD-Hw-eNc" secondAttribute="bottom" constant="4" id="Lrg-HQ-iSX"/>
+                                        <constraint firstAttribute="bottom" secondItem="HYD-Hw-eNc" secondAttribute="bottom" constant="8" id="Lrg-HQ-iSX"/>
                                         <constraint firstItem="rvD-iC-UHg" firstAttribute="leading" secondItem="HYD-Hw-eNc" secondAttribute="trailing" constant="8" id="Pl0-Ph-eql"/>
-                                        <constraint firstItem="HYD-Hw-eNc" firstAttribute="top" secondItem="U4j-JX-HWR" secondAttribute="top" constant="4" id="UrA-ha-u3L"/>
+                                        <constraint firstItem="HYD-Hw-eNc" firstAttribute="top" secondItem="U4j-JX-HWR" secondAttribute="top" constant="8" id="UrA-ha-u3L"/>
                                         <constraint firstItem="HYD-Hw-eNc" firstAttribute="leading" secondItem="U4j-JX-HWR" secondAttribute="leading" constant="8" id="af0-8R-mM3"/>
                                         <constraint firstItem="rvD-iC-UHg" firstAttribute="top" secondItem="U4j-JX-HWR" secondAttribute="topMargin" id="zof-9o-M5C"/>
                                     </constraints>
@@ -104,7 +104,6 @@
                                     <outlet property="newsDetailLabel" destination="vfO-0l-I9J" id="Ty7-7P-tRJ"/>
                                     <outlet property="newsImage" destination="HYD-Hw-eNc" id="Lhp-b0-73e"/>
                                     <outlet property="newsTitleLabel" destination="1g0-yC-cI3" id="DCr-qQ-J8v"/>
-                                    <segue destination="MPN-e4-sAc" kind="show" id="Q5C-Sd-JNN"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -116,6 +115,7 @@
                     <navigationItem key="navigationItem" title="Last news" id="J04-Rg-FEh"/>
                     <connections>
                         <outlet property="table" destination="xq3-Xc-Ojz" id="VJc-vI-XQY"/>
+                        <segue destination="MPN-e4-sAc" kind="show" identifier="showDetail" id="TPc-oO-EHA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CU2-bj-b62" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -133,23 +133,23 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VhH-fT-8wo">
                                 <rect key="frame" x="48" y="238" width="318" height="324"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Late actor Puneeth Rajkumar to be awarded Karnataka Ratna Award: CM Bommai" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bey-7K-usc">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="---------" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bey-7K-usc">
                                 <rect key="frame" x="16" y="96" width="382" height="126"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="oF4-Nx-nF5">
-                                <rect key="frame" x="214.5" y="586" width="151.5" height="48"/>
+                                <rect key="frame" x="282.5" y="586" width="83.5" height="48"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author: Veer Badani" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yC8-pK-smd">
-                                        <rect key="frame" x="0.0" y="0.0" width="151.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-----------" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yC8-pK-smd">
+                                        <rect key="frame" x="0.0" y="0.0" width="83.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16 Nov, 07:57 pm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8n-us-u7X">
-                                        <rect key="frame" x="21.5" y="27.5" width="130" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----------" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c8n-us-u7X">
+                                        <rect key="frame" x="6.5" y="27.5" width="77" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -159,7 +159,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pb-hd-qsE">
                                 <rect key="frame" x="16" y="642" width="382" height="236"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Singapore Airlines has announced it expects to resume 737 MAX flights by the end of this year. The Boeing 737 MAX aircraft was grounded globally more than two years ago following two crashes in 2018 and 2019 that killed over 300 people. It's currently awaiting permission from other countries to fly the aircraft in their airspace and land the plane.</string>
+                                <string key="text">-------------------------------------------------------------------------------------------------------------------------------------------------------------</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -184,9 +184,7 @@
                             <constraint firstItem="VhH-fT-8wo" firstAttribute="leading" secondItem="e2j-Gz-p2F" secondAttribute="leading" constant="48" id="y2D-Mw-UIT"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8bZ-Y6-MSf">
-                        <barButtonItem key="backBarButtonItem" title="Main" id="ji3-Xi-rHv"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="8bZ-Y6-MSf"/>
                     <connections>
                         <outlet property="detailAuthor" destination="yC8-pK-smd" id="LwG-WD-pEl"/>
                         <outlet property="detailDate" destination="c8n-us-u7X" id="mrO-BZ-Pue"/>

@@ -10,11 +10,11 @@ import Kingfisher
 
 class NewsListTableViewCell: UITableViewCell {
     
+    static let identifier = "NewsListTableViewCell"
+    
     @IBOutlet private weak var newsTitleLabel: UILabel?
     @IBOutlet private weak var newsDetailLabel: UILabel?
     @IBOutlet private weak var newsImage: UIImageView?
-    
-    static let identifier = "NewsListTableViewCell"
     
     func configure(_ news: NewsData) {
         newsTitleLabel?.text = news.title

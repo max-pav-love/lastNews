@@ -7,7 +7,7 @@
 
 import Foundation
 
-class NetworkManager {
+final class NetworkManager {
     
     static let shared = NetworkManager()
     
@@ -19,10 +19,10 @@ class NetworkManager {
             guard let data = data else { return }
             do {
                 let decoder = JSONDecoder()
-                decoder.keyDecodingStrategy = .convertFromSnakeCase
                 let news = try decoder.decode(News.self, from: data)
                 completion(news)
             } catch let error {
+                AlertWarning.shared.showAlert()
                 print("Error serialization json", error)
             }
         }.resume()
