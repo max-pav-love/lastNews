@@ -6,7 +6,6 @@
 //
 
 protocol NewsDetailViewModelProtocol {
-    
     var newsDetailTitle: String? { get }
     var newsDetailText: String? { get }
     var newsDetailAuthor: String? { get }
@@ -14,5 +13,4 @@ protocol NewsDetailViewModelProtocol {
     var newsDetailImage: String? { get }
     
     init (news: NewsData)
-    
 }

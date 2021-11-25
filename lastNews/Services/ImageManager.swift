@@ -8,7 +8,7 @@
 import Kingfisher
 import UIKit
 
-class ImageManager {
+final class ImageManager {
     
     static let shared = ImageManager()
     

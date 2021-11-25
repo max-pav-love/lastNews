@@ -8,9 +8,7 @@
 import Foundation
 
 class NewsListViewModel: NewsListViewModelProtocol {
-    
     var news: [NewsData] = []
-    
     private var indexPath: IndexPath?
     
     func fetchNews(comletion: @escaping () -> Void) {

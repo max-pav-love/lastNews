@@ -20,11 +20,9 @@ class NewsListTableViewController: UITableViewController {
             }
         }
     }
-    
     override func viewDidLoad() {
         viewModel = NewsListViewModel()
         super.viewDidLoad()
-        
     }
     
     // MARK: - Navigation
@@ -36,18 +34,18 @@ class NewsListTableViewController: UITableViewController {
     // MARK: - UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        numberOfSections()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.numberOfRows() ?? 0
+        numberOfRows()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         prepareCell(for: indexPath, with: viewModel)
     }
     
-    // MARK: - Private UITableViewDataSource Methods
+    // MARK: - Private
     
     private func prepareCell(for indexPath: IndexPath, with data: NewsListViewModelProtocol) -> UITableViewCell {
         guard let cell = table.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
@@ -55,8 +53,15 @@ class NewsListTableViewController: UITableViewController {
         }
         let cellViewModel = viewModel.cellViewModel(for: indexPath)
         cell.viewModel = cellViewModel
-        
         return cell
+    }
+    
+    private func numberOfRows() -> Int {
+        viewModel.numberOfRows() ?? 0
+    }
+    
+    private func numberOfSections() -> Int {
+        1
     }
     
     private func setupNavigation(with data: NewsListViewModelProtocol, for segue: UIStoryboardSegue) {
@@ -71,7 +76,6 @@ class NewsListTableViewController: UITableViewController {
 // MARK: - UITableView Extensions
 
 extension NewsListTableViewController {
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }

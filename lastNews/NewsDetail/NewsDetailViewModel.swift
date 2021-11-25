@@ -6,7 +6,6 @@
 //
 
 class NewsDetailViewModel: NewsDetailViewModelProtocol {
-    
     private var news: NewsData
     
     var newsDetailText: String? {

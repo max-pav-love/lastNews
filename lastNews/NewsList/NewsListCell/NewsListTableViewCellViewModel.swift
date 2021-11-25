@@ -6,7 +6,6 @@
 //
 
 class NewsListTableViewCellViewModel: NewsListTableViewCellViewModelProtocol {
-    
     private var news: NewsData
     
     var title: String {
