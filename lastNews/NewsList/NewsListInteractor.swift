@@ -20,12 +20,9 @@ class NewsListInteractor: NewsListBusinessLogic, NewsListDataStore {
     var presenter: NewsListPresentationLogic?
     var news: [NewsData] = []
     
-    // MARK: - DataStore
-    
     // MARK: - Business Logic
     
     func fetchNews(request: NewsList.FetchNews.Request) {
-        
         NetworkManager.shared.fetchData { news in
             for oneNew in news.data {
                 let readyNew = NewsData(author: oneNew.author,

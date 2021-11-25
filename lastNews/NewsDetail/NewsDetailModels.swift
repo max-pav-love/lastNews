@@ -8,16 +8,12 @@
 import UIKit
 
 enum NewsDetail {
-    
     enum ShowDetail {
-        
         struct Request {
         }
-        
         struct Response {
             let news: NewsData
         }
-        
         struct ViewModel {
             
             struct DisplayedDetail{
@@ -27,7 +23,6 @@ enum NewsDetail {
                 let detailNewsDate: String?
                 let detailNewsImageUrl: String?
             }
-            
             let dispalayedDetail: DisplayedDetail
         }
     }

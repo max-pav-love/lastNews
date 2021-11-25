@@ -12,7 +12,6 @@ protocol NewsListPresentationLogic {
 }
 
 class NewsListPresenter: NewsListPresentationLogic {
-    
     weak var viewController: NewsListDisplayLogic?
     var worker: NewsListWorker?
     

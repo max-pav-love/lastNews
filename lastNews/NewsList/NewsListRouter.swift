@@ -16,7 +16,6 @@ protocol NewsListDataPassing {
 }
 
 class NewsListRouter: NSObject, NewsListRoutingLogic, NewsListDataPassing {
-    
     weak var viewController: NewsListViewController?
     var dataStore: NewsListDataStore?
     

@@ -12,7 +12,6 @@ protocol NewsDetailPresentationLogic {
 }
 
 class NewsDetailPresenter: NewsDetailPresentationLogic {
-    
     weak var viewController: NewsDetailDisplayLogic?
     
     // MARK: - PresentationLogic

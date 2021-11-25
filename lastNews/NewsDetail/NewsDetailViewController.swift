@@ -52,12 +52,7 @@ class NewsDetailViewController: UIViewController {
     // MARK: - Routing
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let scene = segue.identifier {
-            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
-                router.perform(selector, with: segue)
-            }
-        }
+        navigation(by: segue)
     }
     
     // MARK: - View lifecycle
@@ -67,11 +62,20 @@ class NewsDetailViewController: UIViewController {
         showDetail()
     }
     
-    // MARK: - Methods
+    // MARK: - Private
     
-    func showDetail() {
+    private func showDetail() {
         let request = NewsDetail.ShowDetail.Request()
         interactor?.showDetail(request: request)
+    }
+    
+    private func navigation(by segue: UIStoryboardSegue) {
+        if let scene = segue.identifier {
+            let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
+            if let router = router, router.responds(to: selector) {
+                router.perform(selector, with: segue)
+            }
+        }
     }
     
 }
@@ -88,4 +92,5 @@ extension NewsDetailViewController: NewsDetailDisplayLogic {
                                         .detailNewsImageUrl!,
                                      image: detailImage ?? UIImageView())
     }
+    
 }

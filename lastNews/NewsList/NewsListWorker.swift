@@ -20,7 +20,6 @@ class NewsListWorker {
             let newsName = news.title
             let newsDate = news.date
             let newsImageUrl = news.imageUrl
-            
             let oneDisplayedNews = NewsList
                 .FetchNews
                 .ViewModel

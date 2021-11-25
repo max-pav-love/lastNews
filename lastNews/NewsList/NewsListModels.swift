@@ -9,15 +9,11 @@ import UIKit
 
 enum NewsList {
     enum FetchNews {
-        
         struct Request {
-            
         }
-        
         struct Response {
             var news: [NewsData]
         }
-        
         struct ViewModel {
             
             struct DisplayedNews {
@@ -25,7 +21,6 @@ enum NewsList {
                 var newsDate: String?
                 var newsImageUrl: String?
             }
-            
             var displayedNews: [DisplayedNews]
         }
     }
