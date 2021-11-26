@@ -77,20 +77,16 @@ class NewsDetailViewController: UIViewController {
             }
         }
     }
-    
+
 }
 
 extension NewsDetailViewController: NewsDetailDisplayLogic {
-    
     func displayDetail(viewModel: NewsDetail.ShowDetail.ViewModel) {
         detailTitle?.text = viewModel.dispalayedDetail.detailNewsName
         detailDate?.text = viewModel.dispalayedDetail.detailNewsDate
         detailAuthor?.text = viewModel.dispalayedDetail.detailNewsAuthor
         detailText?.text = viewModel.dispalayedDetail.detailNewsContent
-        ImageManager.shared.getImage(url: viewModel
-                                        .dispalayedDetail
-                                        .detailNewsImageUrl!,
-                                     image: detailImage ?? UIImageView())
+        detailImage?.kf.indicatorType = .activity
+        detailImage?.kf.setImage(with: viewModel.dispalayedDetail.detailNewsImageUrl)
     }
-    
 }

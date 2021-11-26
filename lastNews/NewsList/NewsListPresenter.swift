@@ -12,6 +12,7 @@ protocol NewsListPresentationLogic {
 }
 
 class NewsListPresenter: NewsListPresentationLogic {
+    
     weak var viewController: NewsListDisplayLogic?
     var worker: NewsListWorker?
     
@@ -23,5 +24,4 @@ class NewsListPresenter: NewsListPresentationLogic {
         let viewModel = NewsList.FetchNews.ViewModel(displayedNews: displayedNews)
         viewController?.displayNews(viewModel: viewModel)
     }
-    
 }

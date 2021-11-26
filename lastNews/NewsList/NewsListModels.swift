@@ -19,7 +19,7 @@ enum NewsList {
             struct DisplayedNews {
                 var newsName: String?
                 var newsDate: String?
-                var newsImageUrl: String?
+                var newsImageUrl: URL?
             }
             var displayedNews: [DisplayedNews]
         }

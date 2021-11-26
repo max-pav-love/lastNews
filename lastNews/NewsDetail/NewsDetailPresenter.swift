@@ -12,6 +12,7 @@ protocol NewsDetailPresentationLogic {
 }
 
 class NewsDetailPresenter: NewsDetailPresentationLogic {
+    
     weak var viewController: NewsDetailDisplayLogic?
     
     // MARK: - PresentationLogic
@@ -28,5 +29,4 @@ class NewsDetailPresenter: NewsDetailPresentationLogic {
         let viewModel = NewsDetail.ShowDetail.ViewModel(dispalayedDetail: displayedDetails)
         viewController?.displayDetail(viewModel: viewModel)
     }
-    
 }

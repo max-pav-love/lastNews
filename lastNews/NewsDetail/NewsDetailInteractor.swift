@@ -16,6 +16,7 @@ protocol NewsDetailDataStore {
 }
 
 class NewsDetailInteractor: NewsDetailBusinessLogic, NewsDetailDataStore {
+    
     var presenter: NewsDetailPresentationLogic?
     var news: NewsData?
     
@@ -25,5 +26,4 @@ class NewsDetailInteractor: NewsDetailBusinessLogic, NewsDetailDataStore {
         let response = NewsDetail.ShowDetail.Response(news: news!)
         presenter?.presentDetails(response: response)
     }
-    
 }

@@ -16,6 +16,7 @@ protocol NewsListDataPassing {
 }
 
 class NewsListRouter: NSObject, NewsListRoutingLogic, NewsListDataPassing {
+    
     weak var viewController: NewsListViewController?
     var dataStore: NewsListDataStore?
     
@@ -32,8 +33,7 @@ class NewsListRouter: NSObject, NewsListRoutingLogic, NewsListDataPassing {
     // MARK: - Passing data
     
     func passDataToNewsDetail(source: NewsListDataStore, destination: inout NewsDetailDataStore) {
-        guard let indexPath = viewController?.table.indexPathForSelectedRow else { return }
-        destination.news = source.news[indexPath.row]
+        guard let indexPath = viewController?.table?.indexPathForSelectedRow else { return }
+        destination.news = source.newsArray[indexPath.row]
     }
-    
 }

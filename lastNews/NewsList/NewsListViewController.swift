@@ -13,7 +13,7 @@ protocol NewsListDisplayLogic: AnyObject {
 
 class NewsListViewController: UITableViewController {
     
-    @IBOutlet var table: UITableView!
+    @IBOutlet weak var table: UITableView?
     private var newsArray: [NewsList.FetchNews.ViewModel.DisplayedNews] = []
     
     var interactor: NewsListBusinessLogic?
@@ -24,7 +24,8 @@ class NewsListViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let scene = segue.identifier {
             let selector = NSSelectorFromString("routeTo\(scene)WithSegue:")
-            if let router = router, router.responds(to: selector) {
+            if let router = router,
+               router.responds(to: selector) {
                 router.perform(selector, with: segue)
             }
         }
@@ -36,21 +37,16 @@ class NewsListViewController: UITableViewController {
         super.viewDidLoad()
         NewsListConfigurator.shared.setup(with: self)
         getNews()
-        
     }
     
     // MARK: - UITableViewDataSource
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        1
-    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         newsArray.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = table.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
+        guard let cell = table?.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
             return UITableViewCell()
         }
         cell.configure(newsArray[indexPath.row])
@@ -73,16 +69,10 @@ extension NewsListViewController: NewsListDisplayLogic {
             self.tableView.reloadData()
         }
     }
-    
 }
 
 extension NewsListViewController {
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 }

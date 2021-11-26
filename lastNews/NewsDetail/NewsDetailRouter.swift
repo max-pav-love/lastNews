@@ -16,7 +16,7 @@ protocol NewsDetailDataPassing {
 }
 
 class NewsDetailRouter: NSObject, NewsDetailRoutingLogic, NewsDetailDataPassing {
+    
     weak var viewController: NewsDetailViewController?
     var dataStore: NewsDetailDataStore?
-    
 }

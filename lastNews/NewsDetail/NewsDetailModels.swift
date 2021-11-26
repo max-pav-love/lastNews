@@ -21,7 +21,7 @@ enum NewsDetail {
                 let detailNewsContent: String?
                 let detailNewsAuthor: String?
                 let detailNewsDate: String?
-                let detailNewsImageUrl: String?
+                let detailNewsImageUrl: URL?
             }
             let dispalayedDetail: DisplayedDetail
         }

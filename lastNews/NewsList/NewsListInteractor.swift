@@ -12,29 +12,22 @@ protocol NewsListBusinessLogic {
 }
 
 protocol NewsListDataStore {
-    var news: [NewsData] { get }
+    var newsArray: [NewsData] { get }
 }
 
-class NewsListInteractor: NewsListBusinessLogic, NewsListDataStore {
+class NewsListInteractor: NewsListBusinessLogic, NewsListDataStore {    
     
     var presenter: NewsListPresentationLogic?
-    var news: [NewsData] = []
+    var newsArray: [NewsData] = []
+    private let networkManager = NetworkManager()
     
     // MARK: - Business Logic
     
     func fetchNews(request: NewsList.FetchNews.Request) {
-        NetworkManager.shared.fetchData { news in
-            for oneNew in news.data {
-                let readyNew = NewsData(author: oneNew.author,
-                                        content: oneNew.content,
-                                        date: oneNew.date,
-                                        imageUrl: oneNew.imageUrl,
-                                        title: oneNew.title)
-                self.news.append(readyNew)
-                let response = NewsList.FetchNews.Response(news: self.news)
-                self.presenter?.presentNews(response: response)
-            }
+        networkManager.fetchData { [weak self] news in
+            self?.newsArray = news.data
+            let response = NewsList.FetchNews.Response(news: self?.newsArray ?? [])
+            self?.presenter?.presentNews(response: response)
         }
     }
-    
 }
