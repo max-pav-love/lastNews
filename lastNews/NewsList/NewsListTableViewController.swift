@@ -9,8 +9,10 @@ import UIKit
 
 class NewsListTableViewController: UITableViewController {
     
-    @IBOutlet var table: UITableView!
     private var newsArray: [NewsData] = []
+    private let networkManager = NetworkManager()
+    
+    @IBOutlet private weak var table: UITableView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +42,7 @@ class NewsListTableViewController: UITableViewController {
     }
     
     private func prepareCell(for indexPath: IndexPath, with data: [NewsData]) -> UITableViewCell {
-        guard let cell = table.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
+        guard let cell = table?.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
             return UITableViewCell()
         }
         cell.configure(data[indexPath.row])
@@ -55,17 +57,10 @@ class NewsListTableViewController: UITableViewController {
     }
     
     private func getNews() {
-        NetworkManager.shared.fetchData { news in
-            for oneNew in news.data {
-                let readyNew = NewsData(author: oneNew.author,
-                                        content: oneNew.content,
-                                        date: oneNew.date,
-                                        imageUrl: oneNew.imageUrl,
-                                        title: oneNew.title)
-                self.newsArray.append(readyNew)
-            }
+        networkManager.fetchData { [weak self] news in
+            self?.newsArray = news.data
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                self?.tableView.reloadData()
             }
         }
     }
@@ -75,12 +70,7 @@ class NewsListTableViewController: UITableViewController {
 // MARK: - UITableView Extensions
 
 extension NewsListTableViewController {
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 }

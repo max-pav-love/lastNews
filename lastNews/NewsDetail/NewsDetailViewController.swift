@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import Kingfisher
 
 class NewsDetailViewController: UIViewController {
     
-    var currentNew: NewsData!
+    var currentNew: NewsData?
     
     @IBOutlet private weak var detailTitle: UILabel?
     @IBOutlet private weak var detailImage: UIImageView?
@@ -19,15 +20,16 @@ class NewsDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureDetail(current: currentNew)
+        configureDetail()
     }
     
-    func configureDetail(current new: NewsData) {
-        detailTitle?.text = new.title
-        detailText?.text = new.content
-        detailAuthor?.text = new.author
-        detailDate?.text = new.date
-        ImageManager.shared.getImage(url: new.imageUrl, image: detailImage ?? UIImageView())
+    func configureDetail() {
+        detailTitle?.text = currentNew?.title
+        detailText?.text = currentNew?.content
+        detailAuthor?.text = currentNew?.author
+        detailDate?.text = currentNew?.date
+        detailImage?.kf.indicatorType = .activity
+        detailImage?.kf.setImage(with: currentNew?.imageUrl)
     }
     
 }

@@ -8,9 +8,7 @@
 import Foundation
 
 final class NetworkManager {
-    
-    static let shared = NetworkManager()
-    
+        
     private let newsURL = "https://inshortsapi.vercel.app/news?category=all"
     
     func fetchData(completion: @escaping (_ news: News) -> Void) {
