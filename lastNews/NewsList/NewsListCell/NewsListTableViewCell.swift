@@ -19,7 +19,8 @@ class NewsListTableViewCell: UITableViewCell {
     func configure(_ news: NewsData) {
         newsTitleLabel?.text = news.title
         newsDetailLabel?.text = news.date
-        ImageManager.shared.getImage(url: news.imageUrl, image: newsImage ?? UIImageView())
+        newsImage?.kf.indicatorType = .activity
+        newsImage?.kf.setImage(with: news.imageUrl)
     }
     
 }

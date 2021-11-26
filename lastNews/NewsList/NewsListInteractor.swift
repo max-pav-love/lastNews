@@ -16,8 +16,9 @@ protocol NewsListInteractorOutputProtocol: AnyObject {
 }
 
 class NewsListInteractor {
-    weak var presenter: NewsListInteractorOutputProtocol?
     
+    weak var presenter: NewsListInteractorOutputProtocol?
+    private let networkManager = NetworkManager()
     required init(presenter: NewsListInteractorOutputProtocol) {
         self.presenter = presenter
     }
@@ -26,17 +27,8 @@ class NewsListInteractor {
 
 extension NewsListInteractor: NewsListInteractorProtocol {
     func fetchNews() {
-        var newsArray = [NewsData]()
-        NetworkManager.shared.fetchData { [weak self] news in
-            for oneNew in news.data {
-                let readyNew = NewsData(author: oneNew.author,
-                                        content: oneNew.content,
-                                        date: oneNew.date,
-                                        imageUrl: oneNew.imageUrl,
-                                        title: oneNew.title)
-                newsArray.append(readyNew)
-            }
-            self?.presenter?.newsDidReceive(newsArray)
+        networkManager.fetchData { [weak self] news in
+            self?.presenter?.newsDidReceive(news.data)
         }
     }
 }

@@ -16,6 +16,7 @@ protocol NewsDetailInteractorOutputProtocol: AnyObject {
 }
 
 class NewsDetailInteractor {
+    
     weak var presenter: NewsDetailInteractorOutputProtocol!
     private var news: NewsData
     
@@ -35,5 +36,4 @@ extension NewsDetailInteractor: NewsDetailInteractorProtocol {
                                             newsImage: news.imageUrl)
         presenter.receiveNewsDetail(newsDetailData: newsDetailData)
     }
-    
 }

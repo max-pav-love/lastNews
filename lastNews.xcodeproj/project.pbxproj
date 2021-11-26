@@ -25,7 +25,6 @@
 		15C2B5BB274BAEBA00414C07 /* NewsDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2B5BA274BAEBA00414C07 /* NewsDetailInteractor.swift */; };
 		15C2B5BD274BAEE600414C07 /* NewsDetailConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15C2B5BC274BAEE600414C07 /* NewsDetailConfigurator.swift */; };
 		15FAC81527453B6400EEC43F /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 15FAC81427453B6400EEC43F /* Kingfisher */; };
-		15FAC81727454BEC00EEC43F /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FAC81627454BEB00EEC43F /* ImageManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +47,6 @@
 		15C2B5B8274BAE9A00414C07 /* NewsDetailPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailPresenter.swift; sourceTree = "<group>"; };
 		15C2B5BA274BAEBA00414C07 /* NewsDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailInteractor.swift; sourceTree = "<group>"; };
 		15C2B5BC274BAEE600414C07 /* NewsDetailConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailConfigurator.swift; sourceTree = "<group>"; };
-		15FAC81627454BEB00EEC43F /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				1512D5832744089400A0E9E4 /* NetworkManager.swift */,
-				15FAC81627454BEB00EEC43F /* ImageManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -251,7 +248,6 @@
 				15C2B5BD274BAEE600414C07 /* NewsDetailConfigurator.swift in Sources */,
 				1512D57B2743FCA600A0E9E4 /* NewsListTableViewController.swift in Sources */,
 				1512D57E2743FE2300A0E9E4 /* NewsListTableViewCell.swift in Sources */,
-				15FAC81727454BEC00EEC43F /* ImageManager.swift in Sources */,
 				1512D5842744089400A0E9E4 /* NetworkManager.swift in Sources */,
 				1512D5602743F55900A0E9E4 /* AppDelegate.swift in Sources */,
 				1540FB60274D25D6008300B2 /* NewsListInteractor.swift in Sources */,

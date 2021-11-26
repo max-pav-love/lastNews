@@ -8,18 +8,16 @@
 import UIKit
 
 protocol NewsListTableViewProtocol: AnyObject {
-    var detailSegue: String { get }
     func reloadData()
 }
 
 class NewsListTableViewController: UITableViewController {
     
-    @IBOutlet var table: UITableView!
+    @IBOutlet private weak var table: UITableView?
     
     var presenter: NewsListPresenterProtocol?
     private let configurator: NewsListConfiguratorProtocol = NewsListConfigurator()
-    
-    var detailSegue = "showDetail"
+    let detailSegue = "showDetail"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +44,8 @@ class NewsListTableViewController: UITableViewController {
     // MARK: - Private
     
     private func prepareCell(for indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = table.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell,
+        guard
+            let cell = table?.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell,
             let news = presenter?.news(for: indexPath)
         else {
             return UITableViewCell()
@@ -73,15 +72,10 @@ class NewsListTableViewController: UITableViewController {
 // MARK: - UITableView Extensions
 
 extension NewsListTableViewController {
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         presenter?.showNewsDetails(for: indexPath)
     }
-    
 }
 
 extension NewsListTableViewController: NewsListTableViewProtocol {
@@ -90,5 +84,4 @@ extension NewsListTableViewController: NewsListTableViewProtocol {
             self.tableView.reloadData()
         }
     }
-    
 }

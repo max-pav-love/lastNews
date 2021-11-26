@@ -12,6 +12,7 @@ protocol NewsDetailConfiguratorProtocol: AnyObject {
 }
 
 class NewsDetailConfigurator: NewsDetailConfiguratorProtocol {
+    
     func configure(with view: NewsDetailViewController, and news: NewsData) {
         let presenter = NewsDetailPresenter(view: view)
         let interactor = NewsDetailInteractor(presenter: presenter, news: news)

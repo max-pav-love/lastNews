@@ -16,10 +16,11 @@ struct NewsDetailData {
     let newsText: String?
     let newsAuthor: String?
     let newsDate: String?
-    let newsImage: String?
+    let newsImage: URL?
 }
 
 class NewsDetailPresenter {
+    
     weak var view: NewsDetailViewProtocol?
     var interactor: NewsDetailInteractorProtocol?
     
@@ -33,7 +34,6 @@ extension NewsDetailPresenter: NewsDetailPresenterProtocol {
     func showDetails() {
         interactor?.provideNewsDetail()
     }
-    
 }
 
 extension NewsDetailPresenter: NewsDetailInteractorOutputProtocol {
@@ -42,7 +42,6 @@ extension NewsDetailPresenter: NewsDetailInteractorOutputProtocol {
         view?.setNewsDetailText(with: newsDetailData.newsText)
         view?.setNewsDetailAuthor(with: newsDetailData.newsAuthor)
         view?.setNewsDetailDate(with: newsDetailData.newsDate)
-        view?.setNewsDetailImage(with: newsDetailData.newsImage ?? "")
+        view?.setNewsDetailImage(with: newsDetailData.newsImage)
     }
-    
 }

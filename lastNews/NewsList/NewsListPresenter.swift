@@ -16,6 +16,7 @@ protocol NewsListPresenterProtocol: AnyObject {
 }
 
 class NewsListPresenter {
+    
     weak var view: NewsListTableViewProtocol?
     var interactor: NewsListInteractorProtocol?
     var router: NewsListRouterProtocol?
@@ -50,7 +51,6 @@ extension NewsListPresenter: NewsListPresenterProtocol {
             router?.openDetailViewController(with: currentNew)
         }
     }
-    
 }
 
 extension NewsListPresenter: NewsListInteractorOutputProtocol {
@@ -58,5 +58,4 @@ extension NewsListPresenter: NewsListInteractorOutputProtocol {
         self.news = news
         view?.reloadData()
     }
-    
 }

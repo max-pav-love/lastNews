@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol NewsDetailViewProtocol: AnyObject {
     func setNewsDetailName(with name: String?)
     func setNewsDetailText(with text: String?)
     func setNewsDetailAuthor(with author: String?)
     func setNewsDetailDate(with date: String?)
-    func setNewsDetailImage(with url: String)
+    func setNewsDetailImage(with url: URL?)
 }
 
 class NewsDetailViewController: UIViewController {
@@ -49,9 +50,8 @@ extension NewsDetailViewController: NewsDetailViewProtocol {
         detailTitle?.text = name
     }
     
-    func setNewsDetailImage(with url: String) {
-        ImageManager.shared.getImage(url: url,
-                                     image: detailImage ?? UIImageView())
+    func setNewsDetailImage(with url: URL?) {
+        detailImage?.kf.indicatorType = .activity
+        detailImage?.kf.setImage(with: url)
     }
-    
 }
