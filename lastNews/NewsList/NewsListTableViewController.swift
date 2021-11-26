@@ -9,7 +9,7 @@ import UIKit
 
 class NewsListTableViewController: UITableViewController {
     
-    @IBOutlet var table: UITableView!
+    @IBOutlet private weak var table: UITableView?
     
     private var viewModel: NewsListViewModelProtocol! {
         didSet {
@@ -20,6 +20,7 @@ class NewsListTableViewController: UITableViewController {
             }
         }
     }
+    
     override func viewDidLoad() {
         viewModel = NewsListViewModel()
         super.viewDidLoad()
@@ -44,7 +45,7 @@ class NewsListTableViewController: UITableViewController {
     // MARK: - Private
     
     private func prepareCell(for indexPath: IndexPath, with data: NewsListViewModelProtocol) -> UITableViewCell {
-        guard let cell = table.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
+        guard let cell = table?.dequeueReusableCell(withIdentifier: NewsListTableViewCell.identifier) as? NewsListTableViewCell else {
             return UITableViewCell()
         }
         let cellViewModel = viewModel.cellViewModel(for: indexPath)
@@ -68,12 +69,7 @@ class NewsListTableViewController: UITableViewController {
 // MARK: - UITableView Extensions
 
 extension NewsListTableViewController {
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 }

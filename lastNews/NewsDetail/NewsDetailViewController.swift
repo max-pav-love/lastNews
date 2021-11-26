@@ -9,7 +9,7 @@ import UIKit
 
 class NewsDetailViewController: UIViewController {
     
-    var viewModel: NewsDetailViewModelProtocol!
+    var viewModel: NewsDetailViewModelProtocol?
     
     @IBOutlet private weak var detailTitle: UILabel?
     @IBOutlet private weak var detailImage: UIImageView?
@@ -23,11 +23,11 @@ class NewsDetailViewController: UIViewController {
     }
     
     func setupUI() {
-        detailTitle?.text = viewModel.newsDetailTitle
-        detailDate?.text = viewModel.newsDetailDate
-        detailText?.text = viewModel.newsDetailText
-        detailAuthor?.text = viewModel.newsDetailAuthor
-        ImageManager.shared.getImage(url: viewModel.newsDetailImage ?? "", image: detailImage ?? UIImageView())
+        detailTitle?.text = viewModel?.newsDetailTitle
+        detailDate?.text = viewModel?.newsDetailDate
+        detailText?.text = viewModel?.newsDetailText
+        detailAuthor?.text = viewModel?.newsDetailAuthor
+        detailImage?.kf.indicatorType = .activity
+        detailImage?.kf.setImage(with: viewModel?.newsDetailImageUrl)
     }
-    
 }

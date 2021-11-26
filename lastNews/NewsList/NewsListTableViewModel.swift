@@ -8,30 +8,24 @@
 import Foundation
 
 class NewsListViewModel: NewsListViewModelProtocol {
-    var news: [NewsData] = []
+    
+    var newsArray: [NewsData] = []
     private var indexPath: IndexPath?
     
     func fetchNews(comletion: @escaping () -> Void) {
         NetworkManager.shared.fetchData { news in
-            for oneNew in news.data {
-                let readyNew = NewsData(author: oneNew.author,
-                                        content: oneNew.content,
-                                        date: oneNew.date,
-                                        imageUrl: oneNew.imageUrl,
-                                        title: oneNew.title)
-                self.news.append(readyNew)
-            }
+            self.newsArray = news.data
             comletion()
         }
     }
     
     func cellViewModel(for indexPath: IndexPath) -> NewsListTableViewCellViewModelProtocol? {
-        let news = news[indexPath.row]
+        let news = newsArray[indexPath.row]
         return NewsListTableViewCellViewModel(news: news)
     }
     
     func numberOfRows() -> Int? {
-        news.count
+        newsArray.count
     }
     
     func selectedRow(for indexPath: IndexPath) {
@@ -42,8 +36,7 @@ class NewsListViewModel: NewsListViewModelProtocol {
         guard let indexPath = indexPath else {
             return nil
         }
-        let news = news[indexPath.row]
+        let news = newsArray[indexPath.row]
         return NewsDetailViewModel(news: news)
     }
-    
 }

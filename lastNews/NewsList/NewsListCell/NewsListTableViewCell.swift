@@ -16,11 +16,12 @@ class NewsListTableViewCell: UITableViewCell {
     
     static let identifier = "NewsListTableViewCell"
     
-    var viewModel: NewsListTableViewCellViewModelProtocol! {
+    var viewModel: NewsListTableViewCellViewModelProtocol? {
         didSet {
-            newsTitleLabel?.text = viewModel.title
-            newsDetailLabel?.text = viewModel.date
-            ImageManager.shared.getImage(url: viewModel.imageData, image: newsImage)
+            newsTitleLabel?.text = viewModel?.title
+            newsDetailLabel?.text = viewModel?.date
+            newsImage?.kf.indicatorType = .activity
+            newsImage?.kf.setImage(with: viewModel?.imageData)
         }
     }
     

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol NewsListViewModelProtocol {
-    var news: [NewsData] { get }
+    var newsArray: [NewsData] { get }
     func fetchNews(comletion: @escaping() -> Void )
     func numberOfRows() -> Int?
     func cellViewModel(for indexPath: IndexPath) -> NewsListTableViewCellViewModelProtocol?
